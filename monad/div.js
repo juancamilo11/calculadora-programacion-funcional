@@ -1,10 +1,16 @@
-const div = (a, b, result, add, substract)=>{
-    if(a < 0){
-        return substract(result, 1);
-    }
-    return div(substract(a, b), b, add(result, 1), add, substract)
-}
+import range from "./range.js";
 
-const numero = filter((num)=> num>=0);
+const div = (numerator ,denominator,add, mult) => {
+    if(denominator === 0) {
+        return `Deniminator must be different than 0`;
+    }
+    return range(1, Math.abs(numerator))
+        .reduce((acum, num)=> {
+            if(mult(num,Math.abs(denominator))<=Math.abs(numerator)) {
+                return add(acum,1);
+            };
+            return acum;
+        }, 0) * Math.sign(numerator) * Math.sign(denominator);
+}
 
 export default div;

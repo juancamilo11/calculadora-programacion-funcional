@@ -1,11 +1,6 @@
+import range from "./range.js";
 
-const mult =  (a,b, add, substraction) => {
-    
-    if(b === 1){
-        return a;
-    }
-
-    return add(a, mult(a, substraction(b, 1)));
-}
+const mult = (firstNumber, secondNumber, add) => range(0,  Math.abs(secondNumber))
+        .reduce((num) => add(num,Math.abs(firstNumber))) * Math.sign(firstNumber) * Math.sign(secondNumber);
 
 export default mult;
